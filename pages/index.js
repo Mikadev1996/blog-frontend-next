@@ -4,6 +4,7 @@ import Meta from "../components/Meta";
 import {useState} from 'react';
 import Nav from "../components/Nav";
 import PostList from "../components/PostList";
+import {config} from '../constants';
 
 export default function Home() {
     const [theme, setTheme] = useState('light');
@@ -13,8 +14,6 @@ export default function Home() {
         setTheme(newTheme)
     }
 
-
-    
     return (
         <div className={styles.app} data-theme={theme}>
             <Meta title='Forum Home' description='Forum/Blog social media app created with Next'/>
