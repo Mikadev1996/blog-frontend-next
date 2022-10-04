@@ -1,0 +1,54 @@
+
+
+.post-container {
+    border: 1px solid var(--input-background-color);
+    border-radius: 3px;
+    display: flex;
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+.post-container:hover {
+    border-color: var(--border-color);
+}
+
+.post-likes-container {
+    min-height: 100%;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--border-color);
+    padding-top: 40px;
+}
+
+.post-info {
+    padding-left: 10px;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 100px);
+}
+
+.post-header h2 {
+    margin: 5px 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+.post-text {
+    margin: 5px 0;
+}
+
+.content {
+    width: 100vw;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--post-nav-background-color);
+}
+
+.container {
+    width: 40rem;
+    min-height: 100%;
+}

@@ -9,7 +9,7 @@
 
 .main {
   width: 100vw;
-  /*min-height: calc(100vh - 50px);*/
+  min-height: calc(100vh - var(--footer-size));
   margin-top: 50px;
   display: flex;
   align-items: center;
