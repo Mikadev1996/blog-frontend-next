@@ -1,6 +1,6 @@
 import Link from "next/link";
 import moment from "moment";
-import styles from '../styles/Post.module.css';
+import styles from '../styles/Post.module.scss';
 
 const PostList = ({posts}) => {
 

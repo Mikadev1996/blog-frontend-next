@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import Footer from "../components/Footer";
 import Meta from "../components/Meta";
 import {useState} from 'react';

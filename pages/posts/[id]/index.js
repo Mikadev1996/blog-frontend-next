@@ -1,4 +1,4 @@
-import styles from '../../../styles/Post.module.css';
+import styles from '../../../styles/Post.module.scss';
 import { useRouter } from "next/router";
 import { config } from "../../../constants";
 import Meta from "../../../components/Meta";
