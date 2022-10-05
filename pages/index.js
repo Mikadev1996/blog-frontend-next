@@ -15,11 +15,11 @@ export default function Home({posts}) {
     }
 
     return (
-        <div className={styles.app} data-theme={theme}>
+        <div className='app' data-theme={theme}>
             <Meta title='Forum Home' description='Forum/Blog social media app created with Next'/>
 
             <Nav />
-            <main className={styles.main}>
+            <main className='main'>
                 <PostList posts={posts}/>
             </main>
 

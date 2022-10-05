@@ -1,7 +1,6 @@
 import Link from "next/link";
 import moment from "moment";
 import styles from '../styles/Post.module.css';
-import { useEffect } from "react";
 
 const PostList = ({posts}) => {
 
@@ -27,7 +26,8 @@ const PostList = ({posts}) => {
             <Link href="/posts/[id]" as={`/posts/${post.post_id}`}>
                 <div className={`${styles.post_container}`}>
                     <div className={styles.post_likes_container}>
-                        <p>{post.likes} Likes</p>
+                        <img src="/upvote.svg" alt="upvote" className={styles.upvote}/>
+                        <p><strong>{post.likes}</strong></p>
                     </div>
 
                     <div className={styles.post_info}>

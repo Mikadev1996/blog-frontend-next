@@ -35,6 +35,7 @@ a {
   --border-radius: 8px;
   --speed: 500ms;
   --faint-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --background-alt: #f8f9fa;
 }
 
 html {
@@ -45,8 +46,8 @@ html {
 
 [data-theme='light'] {
   --border-color: #dcdcdc;
-  --hover-bg-color: #d7d5d5;
-  --background-color: #F0F2F5;
+  --hover-bg-color: #737272;
+  --background-color: #dae0e6;
   --input-background-color: #E4E6DB;
   --post-nav-background-color: #FFFFFF;
   --text-color: #050505;
@@ -79,4 +80,22 @@ a {
   color: inherit;
   padding: 0;
   margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  width: 100vw;
+}
+
+
+.main {
+  width: 100vw;
+  min-height: calc(100vh - var(--footer-size));
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--background-color)
 }
