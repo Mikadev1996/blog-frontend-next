@@ -1,50 +1,83 @@
+import styles from "../styles/Login.module.scss";
+import formStyles from "../styles/Forms.module.scss";
+import {config} from "../constants";
+import Link from "next/link";
+import {useState} from "react";
+import {useRouter} from "next/router";
 
 export default function SignUp() {
     const url = config.url.BASE_URL;
+    const router = useRouter();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const logIn = () => {
+        const formData = {
+            method: 'POST',
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            }),
+            headers:{'Content-Type': 'application/json'}
+        }
+
+        fetch(`${url}/users/log-in`, formData)
+            .then(r => r.json())
+            .then(data => console.log(data))
+            .then(data => {
+                router.push('/');
+            })
+            .catch(err => console.log(err));
+    }
+
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        const formData = {
+            method: 'POST',
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            }),
+            headers:{'Content-Type': 'application/json'}
+        }
+
+        fetch(`${url}/users/sign-up`, formData)
+            .then(r => r.json())
+            .then(r => {
+                logIn();
+            })
+    }
+
+
     return (
         <div className='app'>
-            <div className="signin-content account-content">
-                <div id='sign-up-page-header' className='title-container'><h1>Mika's facebook</h1></div>
-                <div id="form-container">
-                    <div className="form-header">
-                        <h2>Create a new account</h2>
-                        <p>It's quick and easy</p>
+            <div className={styles.panel_art}> </div>
+            <main className={formStyles.main}>
+                <div className={formStyles.form_container}>
+                    <div className={formStyles.form_header}>
+                        <h1>Sign up</h1>
+                        <p>By continuing, you are setting up an account and agree to our User Agreement and Privacy Policy</p>
+                        <hr/>
                     </div>
-                    <form className='account-form'  action={`${url}/user/sign-up`}method='POST'>
-                        <div className="form-control name-info">
-                            <input type="text" placeholder="First name" id="firstname" name='firstname'/>
-                            <input type="text" placeholder="Surname" id="surname" name='surname'/>
+                    <form method='POST'>
+                        <div className={formStyles.form_control}>
+                            <input type="text" placeholder="Username" id="username" name='username' onChange={e => setUsername(e.target.value)}/>
                         </div>
 
-                        <div className="form-control">
-                            <label htmlFor="username">Username</label>
-                            <input type="text" placeholder="Username" id="username" name='username'/>
-                            <small>Error Message</small>
-                        </div>
-
-                        <div className="form-control">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" placeholder="New password" id="password" maxLength="16" name='password'/>
-                            <small>Error Message</small>
-                        </div>
-
-                        <div className='form-control'>
-                            <label htmlFor='date_of_birth'>Date of Birth</label>
-                            <input type='date' id='date_of_birth' name='date_of_birth'/>
-                            <small>Error Message</small>
+                        <div className={formStyles.form_control}>
+                            <input type="password" placeholder="Password" id="password" maxLength="16" name='password' onChange={e => setPassword(e.target.value)}/>
                         </div>
 
                         <div>
-                            <button className='form-submit' type="submit">Sign Up</button>
+                            <button className={formStyles.form_submit} type="submit" onClick={(e) => handleSignUp(e)}>SIGN UP</button>
                         </div>
-                        <div className='already-have'>
-                            <a href='/'><p>Already have an account?</p></a>
+                        <div className={formStyles.signup_redirect}>
+                            <p>Already a user? <Link href='/login'>LOG IN</Link></p>
                         </div>
                     </form>
                 </div>
-            </div>
-
-            <Footer />
+            </main>
+            <div className={styles.home}><Link href='/'>Home</Link></div>
         </div>
     )
 }

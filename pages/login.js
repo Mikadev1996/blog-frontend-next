@@ -5,21 +5,37 @@ import formStyles from '../styles/Forms.module.scss'
 import {useState} from "react";
 import {config} from "../constants";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 export default function Login() {
     const url = config.url.BASE_URL;
+    const router = useRouter();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleTestLogIn = (e) => {
         e.preventDefault();
-        const formData = JSON.stringify({
-            username: username,
-            password: password,
-        })
-        fetch(`${url}/users/log-in`, {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+        const formData = {
+            method: 'POST',
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            }),
+            headers:{'Content-Type': 'application/json'}
+        }
+
+        fetch(`${url}/users/log-in`, formData)
             .then(r => r.json())
-            .then(data => console.log(data));
+            .then(data => console.log(data))
+            .then(data => {
+                router.push('/');
+            })
+            .catch(err => console.log(err));
+    }
+
+    const handleLogIn = (e) => {
+        e.preventDefault();
+
     }
 
     return (
@@ -34,15 +50,15 @@ export default function Login() {
                     </div>
                     <form method='POST'>
                         <div className={formStyles.form_control}>
-                            <input type="text" placeholder="Username" id="username" name='username'/>
+                            <input type="text" placeholder="Username" id="username" name='username' onChange={e => setUsername(e.target.value)}/>
                         </div>
 
                         <div className={formStyles.form_control}>
-                            <input type="password" placeholder="New password" id="password" maxLength="16" name='password'/>
+                            <input type="password" placeholder="Password" id="password" maxLength="16" name='password' onChange={e => setPassword(e.target.value)}/>
                         </div>
 
                         <div>
-                            <button className={formStyles.form_submit} type="submit">LOG IN</button>
+                            <button className={formStyles.form_submit} type="submit" onClick={(e) => handleLogIn(e)}>LOG IN</button>
                         </div>
                         <div className={formStyles.signup_redirect}>
                             <p>New? <Link href='/signup'>SIGN UP</Link></p>
@@ -50,6 +66,7 @@ export default function Login() {
                     </form>
                 </div>
             </main>
+            <div className={styles.home}><Link href='/'>Home</Link></div>
         </div>
     )
 }

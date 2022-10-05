@@ -20,6 +20,7 @@
 
 .footer_list li {
   margin: 0 5px;
+  cursor: default;
 }
 
 .footer_list li:hover {
@@ -31,6 +32,7 @@
 }
 
 .footer_info {
+  cursor: pointer;
   display: flex;
 }
 

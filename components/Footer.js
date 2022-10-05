@@ -18,10 +18,10 @@ export default function Footer() {
                     <li>Deutsch</li>
                 </ul>
                 <ul className={styles.footer_info}>
-                    <Link href='/'><li>Log In</li></Link>
-                    <Link href='/sign-up'><li>Sign Up</li></Link>
+                    <Link href='/login'><li>Log In</li></Link>
+                    <Link href='/signup'><li>Sign Up</li></Link>
                     <Link href='https://github.com/Mikadev1996'><li>Mika's GitHub</li></Link>
-                    <Link href='/home'><li>Home</li></Link>
+                    <Link href='/'><li>Home</li></Link>
                 </ul>
                 <ul className={styles.footer_info}>
                     <li>Mika © 2022</li>
