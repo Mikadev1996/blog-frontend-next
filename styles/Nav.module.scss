@@ -26,6 +26,7 @@
 
   button {
     margin: 0 10px;
+    cursor: pointer;
   }
 }
 
@@ -35,7 +36,8 @@
   align-items: center;
 
 
-  div {
+  div:last-child {
+    cursor: pointer;
     display: flex;
     height: 38px;
     align-items: center;
@@ -49,7 +51,7 @@
     }
   }
 
-  div:hover {
+  div:last-child:hover {
     border: 1px solid;
     border-color: var(--hover-bg-color);
     transition: all ease 300ms;
@@ -74,4 +76,24 @@
   border: 2px solid var(--reddit-blue);
   font-weight: bold;
   color: white;;
+}
+
+.submit {
+  height: 32px;
+  width: 32px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 300ms;
+  margin: 0 5px;
+
+  img {
+    height: 28px;
+    width: 28px;
+  }
+}
+
+.submit:hover {
+  background-color: #8A8D91;
 }

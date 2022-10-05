@@ -14,6 +14,7 @@ const Nav = ({user}) => {
                 <div className={styles.nav_item}>
                     <Link href='/signup'><button className={styles.sign_up}>Sign Up</button></Link>
                     <Link href='/login'><button className={styles.log_in}>Log In</button></Link>
+                    <Link href='/submit'><div className={styles.submit}><img src='/plus.png' alt='submit'/></div></Link>
                     <div className={styles.nav_profile}>
                         <p>Pic</p>
                         <p>Username</p>
