@@ -6,7 +6,7 @@ import Nav from "../components/Nav";
 import PostList from "../components/PostList";
 import {config} from '../constants';
 
-export default function Home() {
+export default function Home({posts}) {
     const [theme, setTheme] = useState('light');
 
     const toggleTheme = () => {
@@ -20,10 +20,22 @@ export default function Home() {
 
             <Nav />
             <main className={styles.main}>
-                <PostList />
+                <PostList posts={posts}/>
             </main>
 
             <Footer />
         </div>
     )
+}
+
+export const getStaticProps = async () => {
+    const url = config.url.BASE_URL;
+    const res = await fetch(`${url}/posts`)
+    const posts = await res.json();
+
+    return {
+        props: {
+            posts: posts,
+        }
+    }
 }
