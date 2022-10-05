@@ -12,14 +12,18 @@ const Nav = ({user}) => {
                 </div>
 
                 <div className={styles.nav_item}>
-                    <Link href='/signup'><button className={styles.sign_up}>Sign Up</button></Link>
-                    <Link href='/login'><button className={styles.log_in}>Log In</button></Link>
-                    <Link href='/submit'><div className={styles.submit}><img src='/plus.png' alt='submit'/></div></Link>
-                    <div className={styles.nav_profile}>
-                        <p>Pic</p>
-                        <p>Username</p>
-                        <img src='/chevron.png' alt='chevron' width={10} height={10}/>
-                    </div>
+                    {!user && <Link href='/signup'><button className={styles.sign_up}>Sign Up</button></Link>}
+                    {!user && <Link href='/login'><button className={styles.log_in}>Log In</button></Link>}
+                    {user && <button className={styles.log_in}>Log Out</button>}
+                    {user && <Link href='/submit'><div className={styles.submit}><img src='/plus.png' alt='submit'/></div></Link>}
+                    {user &&
+                    <Link href="/profile/[id]" as={`/profile/${user.user_id}`}>
+                        <div className={styles.nav_profile}>
+                            <p>Pic</p>
+                            <p>{user.username}</p>
+                            <img src='/chevron.png' alt='chevron' width={10} height={10}/>
+                        </div>
+                    </Link>}
                 </div>
 
             </div>

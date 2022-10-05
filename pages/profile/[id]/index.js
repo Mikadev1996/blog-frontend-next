@@ -4,14 +4,35 @@ import Footer from "../../../components/Footer";
 import PostList from "../../../components/PostList";
 import styles from '../../../styles/Profile.module.scss';
 import moment from "moment";
+import {useEffect, useState} from "react";
 
 const profile = ({user, posts}) => {
-    console.log(user)
+    const [userData, setUserData] = useState({})
     const dateFormatted = moment(user.date_joined).format('DD/MM/YYYY');
+    const url = config.url.BASE_URL;
+
+    useEffect(() => {
+        checkAuth();
+    },[])
+
+    function checkAuth() {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
+
+        fetch(`${url}/users/self`, formData)
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) {
+                    localStorage.removeItem('token');
+                    router.push('/login');
+                }
+                setUserData(data);
+            })
+    }
 
     return (
         <div className='app' data-theme='light'>
-            <Nav />
+            <Nav user={userData}/>
             <main className={styles.profile_main}>
                 <PostList posts={posts}/>
                 <div className={styles.profile_display}>

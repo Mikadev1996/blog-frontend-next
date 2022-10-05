@@ -18,6 +18,31 @@ export default function Login() {
         const formData = {
             method: 'POST',
             body: JSON.stringify({
+                username: 'testUser1',
+                password: '123',
+            }),
+            headers:{'Content-Type': 'application/json'}
+        }
+
+        fetch(`${url}/users/log-in`, formData)
+            .then(r => r.json())
+            .then(data => {
+                if (data.token !== undefined) {
+                    localStorage.setItem('token', JSON.stringify(data.token));
+                    router.push('/');
+                }
+                else {
+                    window.alert("Error, incorrect user/password");
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
+    const handleLogIn = (e) => {
+        e.preventDefault();
+        const formData = {
+            method: 'POST',
+            body: JSON.stringify({
                 username: username,
                 password: password,
             }),
@@ -26,15 +51,16 @@ export default function Login() {
 
         fetch(`${url}/users/log-in`, formData)
             .then(r => r.json())
-            .then(data => console.log(data))
             .then(data => {
-                router.push('/');
+                if (data.token !== undefined) {
+                    localStorage.setItem('token', JSON.stringify(data.token));
+                    router.push('/');
+                }
+                else {
+                    window.alert("Error, incorrect user/password");
+                }
             })
             .catch(err => console.log(err));
-    }
-
-    const handleLogIn = (e) => {
-        e.preventDefault();
 
     }
 
@@ -59,6 +85,9 @@ export default function Login() {
 
                         <div>
                             <button className={formStyles.form_submit} type="submit" onClick={(e) => handleLogIn(e)}>LOG IN</button>
+                        </div>
+                        <div>
+                            <button className={formStyles.form_submit} type="submit" onClick={(e) => handleTestLogIn(e)}>Test Account</button>
                         </div>
                         <div className={formStyles.signup_redirect}>
                             <p>New? <Link href='/signup'>SIGN UP</Link></p>

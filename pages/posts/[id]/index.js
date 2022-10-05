@@ -5,17 +5,37 @@ import Meta from "../../../components/Meta";
 import Link from "next/link";
 import Nav from "../../../components/Nav";
 import Footer from "../../../components/Footer";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const post = ({data}) => {
     const [theme, setTheme] = useState('light');
+    const [user, setUser] = useState({});
     const router = useRouter();
     const {id} = router.query;
+
+    useEffect(() => {
+        checkAuth();
+    },[])
+
+    function checkAuth() {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
+
+        fetch(`${url}/users/self`, formData)
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) {
+                    localStorage.removeItem('token');
+                    router.push('/login');
+                }
+                setUser(data);
+            })
+    }
 
     return (
         <div className={styles.app} data-theme='light'>
             <Meta title={data.post.text} />
-            <Nav />
+            <Nav user={user}/>
             <main className='main'>
                 This is post {data.post.post_id}
                 <p>{data.post.text}</p>
