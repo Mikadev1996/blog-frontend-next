@@ -8,7 +8,6 @@
   justify-content: center;
   align-items: center;
   z-index: 100;
-  transition: all ease 300ms;
 }
 
 .nav_container {
@@ -22,16 +21,57 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-.nav_logo {
-  width: 45px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.nav_item {
+  margin: 0 25px;
+
+  button {
+    margin: 0 10px;
+  }
 }
 
-.nav_logo a img {
-  margin-top: 5px;
-  width: 40px;
-  height: 40px;
+.nav_item:last-child {
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+
+  div {
+    display: flex;
+    height: 38px;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 3px;
+    justify-content: space-evenly;
+    width: 150px;
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  div:hover {
+    border: 1px solid;
+    border-color: var(--hover-bg-color);
+    transition: all ease 300ms;
+  }
+}
+
+.sign_up {
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  border: 2px solid var(--reddit-blue);
+  font-weight: bold;
+  color: var(--reddit-blue);
+  background-color: white;
+}
+
+.log_in {
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: var(--reddit-blue);
+  border: 2px solid var(--reddit-blue);
+  font-weight: bold;
+  color: white;;
 }

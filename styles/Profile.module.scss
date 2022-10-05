@@ -1,0 +1,23 @@
+.profile_main {
+    width: 100vw;
+    min-height: calc(100vh - var(--footer-size));
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--background-color)
+
+}
+
+.profile_display {
+    width: 250px;
+    height: 300px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 75px;
+    z-index: 10;
+    margin-left: 20px;
+    padding: 5px;
+    cursor: default;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+}

@@ -32,7 +32,9 @@ const PostList = ({posts}) => {
 
                     <div className={styles.post_info}>
                         <div className={styles.post_header}>
-                            <p>Posted by user/{post.username} {dateFormatted} {post.edited ? <small>*edited</small> : ''}</p>
+                            <Link href="/profile/[id]" as={`/profile/${post.user_id}`}>
+                                <p>Posted by user/{post.username} {dateFormatted} {post.edited ? <small>*edited</small> : ''}</p>
+                            </Link>
                             <h2>Post Title</h2>
                         </div>
 
