@@ -15,16 +15,6 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
-
 :root {
   --text-color: #121416d8;
   --link-color: #543fd7;

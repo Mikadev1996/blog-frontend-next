@@ -53,7 +53,7 @@ const PostList = ({posts}) => {
 
     return (
         <div className={styles.post_list_container}>
-            {posts.map((post) => {
+            {posts.length > 0 && posts.map((post) => {
                 return (
                     <PostItem post={post} key={post.post_id}/>
                 )
