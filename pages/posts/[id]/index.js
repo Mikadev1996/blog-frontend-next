@@ -11,7 +11,7 @@ const post = ({data}) => {
     const [theme, setTheme] = useState('light');
     const [user, setUser] = useState({});
     const router = useRouter();
-    const {id} = router.query;
+    const url = config.url.BASE_URL;
 
     useEffect(() => {
         checkAuth();

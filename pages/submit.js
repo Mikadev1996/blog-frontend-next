@@ -7,7 +7,18 @@ export default function Submit() {
             <Nav />
             <main className='main'>
                 <div>
-                    Create post
+                    <div>
+                        <img />
+                        <p>Post</p>
+                    </div>
+                    <div>
+                        <input type='text' name='title' />
+                        <textarea placeholder='Text (optional)'/>
+                        
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
             </main>
             <Footer />
