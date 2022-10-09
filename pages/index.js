@@ -8,15 +8,9 @@ import {config} from '../constants';
 import {useRouter} from "next/router";
 
 export default function Home({posts}) {
-    const [theme, setTheme] = useState('light');
     const [user, setUser] = useState({});
     const router = useRouter();
     const url = config.url.BASE_URL;
-
-    const toggleTheme = () => {
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme)
-    }
 
     useEffect(() => {
         checkAuth();
@@ -38,7 +32,7 @@ export default function Home({posts}) {
     }
 
     return (
-        <div className='app' data-theme={theme}>
+        <div className='app' data-theme='light'>
             <Meta title='Forum Home' description='Forum/Blog social media app created with Next'/>
 
             <Nav user={user}/>
