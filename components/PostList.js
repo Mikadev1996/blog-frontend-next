@@ -35,7 +35,7 @@ const PostList = ({posts}) => {
                             <Link href="/profile/[id]" as={`/profile/${post.user_id}`}>
                                 <p>Posted by user/{post.username} {dateFormatted} {post.edited ? <small>*edited</small> : ''}</p>
                             </Link>
-                            <h2>Post Title</h2>
+                            <h2>{post.title}</h2>
                         </div>
 
                         <div className={styles.post_text}>

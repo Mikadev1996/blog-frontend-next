@@ -12,12 +12,44 @@
     input {
       width: 100%;
       padding: 5px;
+      font-family: inherit;
+      outline: none;
+      border-radius: 3px;
+      border: 1px solid #9f9f9f;
+    }
+
+    input:focus {
+      border-color: #18191a;
     }
 
     textarea {
+      min-height: 100px;
       width: 100%;
       padding: 5px;
       resize: vertical;
+      font-family: inherit;
+      outline: none;
+      border-radius: 3px;
+      border: 1px solid #9f9f9f;
+    }
+
+    textarea:focus {
+      border-color: #18191a;
     }
   }
+}
+
+.submit {
+  width: 60px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: var(--reddit-blue);
+  border: 2px solid var(--reddit-blue);
+  font-weight: bold;
+  color: white;;
+}
+
+.submit:hover {
+  background-color: #025a9d;
+  border-color: #025a9d;
 }

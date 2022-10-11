@@ -31,7 +31,8 @@ export default function Submit() {
             })
     }
 
-    const submitPost = () => {
+    const submitPost = (e) => {
+        e.preventDefault();
         const token = JSON.parse(localStorage.getItem('token'));
         const formData = {
             method: "POST",
@@ -61,12 +62,12 @@ export default function Submit() {
                     <h1>Create a post</h1>
                     <hr />
                 </div>
-                <div className={styles.create_container}>
+                <form className={styles.create_container}>
                     <div>
                         <p>Post</p>
                     </div>
                     <div>
-                        <input type='text' name='title' placeholder='Title' onChange={(e) => setTitle(e.target.value)} />
+                        <input type='text' name='title' placeholder='Title' onChange={(e) => setTitle(e.target.value)} required/>
                     </div>
                     <div>
                         <textarea placeholder='Text (optional)' onChange={(e) => setText(e.target.value)}/>
@@ -75,9 +76,9 @@ export default function Submit() {
                     <hr/>
 
                     <div>
-                        <button onClick={() => submitPost()}>Post</button>
+                        <button className={styles.submit} onClick={(e) => submitPost(e)}>Post</button>
                     </div>
-                </div>
+                </form>
             </main>
             <Footer />
         </div>
