@@ -7,6 +7,8 @@ import {useEffect, useState} from "react";
 
 export default function Submit() {
     const [user, setUser] = useState({});
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
     const router = useRouter();
     const url = config.url.BASE_URL;
 
@@ -28,6 +30,29 @@ export default function Submit() {
                 setUser(data);
             })
     }
+
+    const submitPost = () => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const formData = {
+            method: "POST",
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                title: title,
+                text: text
+            })
+        }
+
+        fetch(`${url}/posts/create`, formData)
+            .then(r => r.json())
+            .then(data => {
+                console.log(data);
+                if (!data.error) {
+                    router.push('/');
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
     return (
         <div className='app' data-theme='light'>
             <Nav user={user}/>
@@ -41,16 +66,16 @@ export default function Submit() {
                         <p>Post</p>
                     </div>
                     <div>
-                        <input type='text' name='title' placeholder='Title' />
+                        <input type='text' name='title' placeholder='Title' onChange={(e) => setTitle(e.target.value)} />
                     </div>
                     <div>
-                        <textarea placeholder='Text (optional)'/>
+                        <textarea placeholder='Text (optional)' onChange={(e) => setText(e.target.value)}/>
                     </div>
 
                     <hr/>
 
                     <div>
-                        <button>Post</button>
+                        <button onClick={() => submitPost()}>Post</button>
                     </div>
                 </div>
             </main>
