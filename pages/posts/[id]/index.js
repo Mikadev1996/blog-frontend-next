@@ -16,6 +16,7 @@ const post = ({data}) => {
     const [comments, setComments] = useState(data.comments);
     const [theme, setTheme] = useState('light');
     const [user, setUser] = useState({});
+    const [likes, setLikes] = useState(data.post.likes)
     const router = useRouter();
     const url = config.url.BASE_URL;
 
@@ -42,6 +43,22 @@ const post = ({data}) => {
         setComments(comments => [comment, ...comments])
     }
 
+    const likePost = (postid) => {
+        const url = config.url.BASE_URL;
+        const token = JSON.parse(localStorage.getItem('token'));
+        const formData = {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+        }
+
+        fetch(`${url}/posts/${postid}/like`, formData)
+            .then(r => r.json())
+            .then(data => {
+                setLikes(likes + 1);
+            })
+            .catch(err => console.log(err));
+    }
+
     return (
         <div className={PostStyles.app} data-theme='light'>
             <Meta title={data.post.text}/>
@@ -50,8 +67,8 @@ const post = ({data}) => {
                 <div className={styles.container}>
                     <div className={styles.content}>
                         <div className={styles.likes_container}>
-                            <p>{data.post.likes} Likes</p>
-                            <img className={styles.like_icon} src="/upvote.svg" alt='like'/>
+                            <p>{likes} Likes</p>
+                            <img className={styles.like_icon} src="/upvote.svg" alt='like' onClick={() => likePost(data.post.post_id)}/>
                         </div>
 
                         <div className={styles.info}>

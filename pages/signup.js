@@ -48,7 +48,6 @@ export default function SignUp() {
         fetch(`${url}/users/sign-up`, formData)
             .then(r => r.json())
             .then(r => {
-
                 logIn();
             })
     }
