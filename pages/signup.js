@@ -23,9 +23,13 @@ export default function SignUp() {
 
         fetch(`${url}/users/log-in`, formData)
             .then(r => r.json())
-            .then(data => console.log(data))
             .then(data => {
-                router.push('/');
+                if (data.token !== undefined) {
+                    localStorage.setItem('token', JSON.stringify(data.token));
+                    router.push('/');
+                } else {
+                    window.alert('Error signing in');
+                }
             })
             .catch(err => console.log(err));
     }
@@ -44,6 +48,7 @@ export default function SignUp() {
         fetch(`${url}/users/sign-up`, formData)
             .then(r => r.json())
             .then(r => {
+
                 logIn();
             })
     }
