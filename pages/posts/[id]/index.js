@@ -12,7 +12,8 @@ import AddComment from "../../../components/AddComment";
 import Comments from "../../../components/Comments";
 
 const post = ({data}) => {
-    console.log(data);
+    // console.log(data)
+    const [comments, setComments] = useState(data.comments);
     const [theme, setTheme] = useState('light');
     const [user, setUser] = useState({});
     const router = useRouter();
@@ -37,36 +38,39 @@ const post = ({data}) => {
             })
     }
 
+    const handleNewComment = (comment) => {
+        setComments(comments => [comment, ...comments])
+    }
+
     return (
         <div className={PostStyles.app} data-theme='light'>
             <Meta title={data.post.text}/>
             <Nav user={user}/>
             <main className='main'>
-                This is post {data.post.post_id}
-                <div className='view-post-content-header'></div>
-                <div className='view-post-container'>
-                    <div className='view-post-content'>
-                        <div className='view-post-likes-container'>
+                <div className={styles.container}>
+                    <div className={styles.content}>
+                        <div className={styles.likes_container}>
                             <p>{data.post.likes} Likes</p>
-                            <img src="/upvote.svg" alt='like'/>
+                            <img className={styles.like_icon} src="/upvote.svg" alt='like'/>
                         </div>
 
-                        <div className='view-post-info'>
-                            <div className='post-header'>
+                        <div className={styles.info}>
+                            <div>
                                 <p>Posted by
-                                    user/{data.post.username} {moment(data.post.timestamp).format('DD/MM/YYYY')}</p>
+                                    <Link href="/profile/[id]" as={`/profile/${data.post.user_id}`}><a> user/{data.post.username}</a></Link> {moment(data.post.timestamp).format('DD/MM/YYYY')}
+                                </p>
                                 <h2>{data.post.title}</h2>
                             </div>
 
-                            <div className='view-post-text'>
+                            <div>
                                 {data.post.text}
                             </div>
 
-                            <AddComment postid={data.post.post_id}/>
+                            <AddComment postid={data.post.post_id} username={user.username} handleNewComment={handleNewComment}/>
                         </div>
                     </div>
-                    <hr className='hr-comments'/>
-                    <Comments/>
+                    <hr className={styles.hr_comments}/>
+                    <Comments comments={comments}/>
                 </div>
             </main>
             <Footer/>

@@ -1,0 +1,140 @@
+
+.container {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  background-color: white;
+  min-height: calc(100% - 115px);
+  width: 42rem;
+  border-radius: 5px;
+}
+
+.content {
+  width: 100%;
+  min-height: 350px;
+  display: flex;
+}
+
+.likes_container {
+  width: 100px;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
+}
+
+.info {
+  margin-top: 50px;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    p {
+      font-size: 11px;
+      margin: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    font-size: 14px;
+  }
+}
+
+.add_comment_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  border: 1px solid var(--create-border-color);
+  border-radius: 3px;
+
+  p {
+    font-size: 11px;
+  }
+}
+
+.comment_textarea {
+  min-height: 100px;
+  width: 100%;
+  padding: 5px;
+  resize: vertical;
+  font-family: inherit;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #9f9f9f;
+}
+
+.comment_textarea:focus {
+  border-color: #18191a;
+}
+
+.submit_comment_container {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.submit_comment {
+  margin-top: 15px;
+  width: 100px;
+  height: 23px;
+  border-radius: 15px;
+  background-color: var(--reddit-blue);
+  border: 2px solid var(--reddit-blue);
+  font-weight: bold;
+  color: white;;
+}
+
+.submit_comment:hover {
+  opacity: 70%;
+}
+
+.hr_comments {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 90%;
+  opacity: 90%;
+}
+
+.like_icon {
+  width: 20px;
+  height: 20px;
+  margin-top: 15px;
+}
+
+.comment_profile_pic {
+  width: 20px;
+  height: 20px;
+}
+
+.comments_section_container {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comments_container {
+  width: 90%;
+}
+
+.comments_header {
+  display: flex;
+  align-items: center;
+}
+
+.comments_header * {
+  margin: 0 10px;
+  font-size: 12px;
+}
+
+.comments_text {
+  padding: 0 10px;
+}

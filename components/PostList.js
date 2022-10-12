@@ -43,7 +43,7 @@ const PostList = ({posts}) => {
                         </div>
 
                         <div>
-                            <a><p>View Comments</p></a>
+                            <a><p style={{cursor: 'pointer'}}>View Comments</p></a>
                         </div>
                     </div>
                 </div>

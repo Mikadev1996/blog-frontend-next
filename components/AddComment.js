@@ -1,19 +1,28 @@
 import {useState} from "react";
+import styles from '../styles/posts[id].module.scss';
+import {config} from "../constants";
 
-const AddComment = ({postid, handleNewComment}) => {
+const AddComment = ({username, postid, handleNewComment}) => {
     const [text, setText] = useState("")
+    const url = config.url.BASE_URL;
 
     const postComment = (e) => {
         e.preventDefault();
-        const formData = JSON.stringify({
-            username: "Anonymous",
-            text: text,
-        })
+        const token = JSON.parse(localStorage.getItem('token'));
 
-        fetch(`https://shielded-hamlet-48088.herokuapp.com/api/comments/${postid}`, {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+        const formData = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                username: "Anonymous",
+                text: text,
+            })
+        }
+
+        fetch(`${url}/comments/${postid}`, formData)
             .then(r => r.json())
             .then(data => {
-                handleNewComment(data.comment)
+                handleNewComment(data[0])
                 resetTextArea();
                 setText("");
             })
@@ -28,11 +37,12 @@ const AddComment = ({postid, handleNewComment}) => {
     }
 
     return (
-        <form onSubmit={postComment} className='add-comment-container'>
-            <textarea id='text-box' placeholder='What are your thoughts?' onChange={e => setText(e.target.value)}/>
+        <form onSubmit={postComment} className={styles.add_comment_container}>
+            <p>Comment as <strong style={{color: '#0079D3', cursor: 'default'}} >{username}</strong></p>
+            <textarea id='text-box' className={styles.comment_textarea} placeholder='What are your thoughts?' onChange={e => setText(e.target.value)} required/>
 
-            <div className='submit-comment-container'>
-                <button type='submit' className='submit-comment'>Comment</button>
+            <div className={styles.submit_comment_container}>
+                <button type='submit' className={styles.submit_comment}>Comment</button>
             </div>
         </form>
     )
